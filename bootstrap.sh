@@ -5,7 +5,7 @@ ssh-keyscan -H github.com >> /home/vagrant/.ssh/known_hosts
 chown -R vagrant:vagrant /home/vagrant/.ssh
 chmod -R 700 /home/vagrant/.ssh
 
-echo '127.0.0.1 host.docker.internal' >> /home/vagrant/.ssh/known_hosts
+echo '127.0.0.1 host.docker.internal' >> /etc/hosts
 
 apt-get install docker.io gnupg2 po postgresql-client-common libpq-dev libmagic-dev unzip ruby-curb freetds-dev libicu-dev libcurl4-gnutls-dev
 
