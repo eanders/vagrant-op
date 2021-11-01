@@ -7,6 +7,7 @@ chmod -R 700 /home/vagrant/.ssh
 
 echo '127.0.0.1 host.docker.internal' >> /etc/hosts
 
+apt-get update
 apt-get -y install docker.io gnupg2 postgresql-client-common libpq-dev libmagic-dev unzip ruby-curb freetds-dev libicu-dev libcurl4-gnutls-dev
 
 curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -18,8 +19,9 @@ usermod -aG docker vagrant
 cd docker/nginx-proxy
 docker network create nginx-proxy
 
-gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-curl -sSL https://get.rvm.io | bash -s stable
+gem install bundler:1.17.3
+gem install bundler:2.2.26
+bundle update --bundler
 
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
