@@ -42,6 +42,8 @@ services:
 
 Then add this to `docker-compose.override.yml` to CAS.
 ```yaml
+version: '3.8'
+
 services:
   db:
     ports:
