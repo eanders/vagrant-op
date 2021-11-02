@@ -6,7 +6,6 @@ gem uninstall vagant
 brew install vagrant
 
 vagrant plugin install vagrant-parallels
-vagrant init bento/ubuntu-20.04
 
 git clone git@github.com:eanders/vagrant-op.git op
 ```
