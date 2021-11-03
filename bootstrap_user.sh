@@ -5,6 +5,24 @@ echo "export GPG_TTY=$(tty)" >> /home/vagrant/.bashrc
 echo "alias dcr='docker-compose run --rm'" >> /home/vagrant/.bashrc
 # add keys so we don't need to enter the password always
 echo "ssh-add" >> /home/vagrant/.bashrc
+
+if [ ! -d /vagrant/boston-cas ]; then
+  git clone git@github.com:greenriver/boston-cas.git /vagrant/boston-cas
+  cp /vagrant/cas-docker-compose.override.yml /vagrant/boston-cas/docker-compose.override.yml
+  cp /vagrant/boston-cas/.env.sample /vagrant/boston-cas/.env.local
+  echo "RAILS_ENV=test" > /vagrant/boston-cas/.env.test
+fi
+
+if [ ! -d /vagrant/hmis-warehouse ]; then
+  git clone git@github.com:greenriver/hmis-warehouse.git /vagrant/hmis-warehouse
+  cp /vagrant/hmis-docker-compose.override.yml /vagrant/hmis-warehouse/docker-compose.override.yml
+  cp /vagrant/hmis-warehouse/sample.env /vagrant/hmis-warehouse/.env.local
+  openssl req -new -newkey rsa:2048 -sha256 -days 3650 -nodes -x509 \
+    -keyout /vagrant/hmis-warehouse/docker/nginx-proxy/certs/dev.test.key \
+    -out /vagrant/hmis-warehouse/docker/nginx-proxy/certs/dev.test.crt \
+    -config /vagrant/openssl.cnf
+fi
+
 ln -s /vagrant/boston-cas ~/boston-cas
 ln -s /vagrant/hmis-warehouse ~/hmis-warehouse
 
