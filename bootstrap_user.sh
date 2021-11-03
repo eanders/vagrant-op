@@ -37,8 +37,9 @@ source /home/vagrant/.rvm/scripts/rvm
 cd ~/hmis-warehouse
 rvm install "ruby-2.7.4"
 
+mkdir ~/.aws
+touch ~/.aws/config
+
 # TODO:
 # git credentials (and verification)
-
-sudo curl -L -o /usr/local/bin/aws-vault https://github.com/99designs/aws-vault/releases/download/v4.2.0/aws-vault-linux-amd64
-sudo chmod 755 /usr/local/bin/aws-vault
+# aws-vault add openpath
