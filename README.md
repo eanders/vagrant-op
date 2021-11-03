@@ -9,7 +9,7 @@ vagrant plugin install vagrant-parallels
 
 git clone git@github.com:eanders/vagrant-op.git op
 ```
-Either clone or copy in your existing [HMIS Warehouse](http://github.com/greenriver/hmis-warehouse) and [CAS](http://github.com/greenriver/boston-cas) directories into the `op` folder created above.
+Either copy in your existing [HMIS Warehouse](http://github.com/greenriver/hmis-warehouse) and [CAS](http://github.com/greenriver/boston-cas) directories into the `op` folder created above, or they will be cloned and a default configuration will be created.
 
 Initialize with a VirtualBox provider
 ```bash
@@ -26,7 +26,9 @@ Future starts can be run as
 vagrant up
 ```
 
-To access the web interface outside of the vagrant container, you'll need to add certificates for nginx-proxy [as noted in the warehouse networking setup](https://github.com/greenriver/hmis-warehouse/blob/production/docs/developer-networking.md#certificate) and then restart vagrant.
+To access the web interface outside of the vagrant container, you'll need to add certificates for nginx-proxy [as noted in the warehouse networking setup](https://github.com/greenriver/hmis-warehouse/blob/production/docs/developer-networking.md#certificate) and then restart vagrant. If you allowed vagrant to clone
+and create a default configuration, the certificates will be created for you,
+but you will still need to install them on your local machine.
 
 
 If you want both CAS and the warehouse to share a database server, you may want to add a `docker-compose.override.yml` to one of the warehouse installation that puts the db container on a different port. 
@@ -53,3 +55,5 @@ services:
     ports:
       - 6378 # hide redis from the warehouse
 ```
+
+This is the default if you allowed vagrant to create a configuration.
