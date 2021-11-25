@@ -25,6 +25,7 @@ fi
 
 ln -s /vagrant/boston-cas ~/boston-cas
 ln -s /vagrant/hmis-warehouse ~/hmis-warehouse
+ln -s /vagrant/sftp ~/sftp
 
 source ~/.bashrc
 
