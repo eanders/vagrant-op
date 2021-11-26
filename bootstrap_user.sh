@@ -23,8 +23,13 @@ if [ ! -d /vagrant/hmis-warehouse ]; then
     -config /vagrant/openssl.cnf
 fi
 
+if [ ! -d /vagrant/sftp ]; then
+  mkdir /vagrant/sftp
+fi
+
 ln -s /vagrant/boston-cas ~/boston-cas
 ln -s /vagrant/hmis-warehouse ~/hmis-warehouse
+ln -s /vagrant/sftp ~/sftp
 
 source ~/.bashrc
 
