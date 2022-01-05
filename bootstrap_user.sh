@@ -43,6 +43,9 @@ cd ~/hmis-warehouse
 rvm install "ruby-2.7.4"
 gem install bundler:2.2.30
 gem install overcommit
+gem install aws-sdk-secretsmanager
+gem install aws-sdk-ecr
+gem install aws-sdk-elasticloadbalancingv2
 overcommit --sign
 
 mkdir ~/.aws
@@ -50,4 +53,9 @@ touch ~/.aws/config
 
 # TODO:
 # git credentials (and verification)
+# Notes: you'll need to copy your gpg keys from the host (if you have them)
+# Instructions for the github side are here: https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits
+# git config commit.gpgsign true
+# Will auto sign all commits
+
 # aws-vault add openpath
