@@ -70,3 +70,10 @@ echo "5.0.10"
 ```
 
 Alteratively you can install from source and update `plugins/providers/virtualbox/driver/meta.rb#read_version` something like `return '5.0.10'`.
+
+# Resizing disks
+With the Parallels Provider, it appears disks don't resize quite as seemlessly, but the "physical" disk grows.  In Ubuntu you can run:
+```
+sudo lvextend --size 58GB /dev/mapper/ubuntu--vg-ubuntu--lv
+sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+```
