@@ -31,7 +31,7 @@ and create a default configuration, the certificates will be created for you,
 but you will still need to install them on your local machine.
 
 
-If you want both CAS and the warehouse to share a database server, you may want to add a `docker-compose.override.yml` to one of the warehouse installation that puts the db container on a different port. 
+If you want both CAS and the warehouse to share a database server, you may want to add a `docker-compose.override.yml` to one of the warehouse installation that puts the db container on a different port.
 ```yaml
 version: '3.8'
 
@@ -57,3 +57,16 @@ services:
 ```
 
 This is the default if you allowed vagrant to create a configuration.
+
+# Parallels and Vagrant on Apple M1
+Vagrant really doesn't like to be installed without VirtualBox. Since you can't install VirtualBox on M1 you can get around this by returning a valid known functioning version.
+
+Place the following in `/usr/local/bin/VBoxManage` and then run `chmod 755 /usr/local/bin/VBoxManage`.
+
+```
+#!/usr/bin/env bash
+
+echo "5.0.10"
+```
+
+Alteratively you can install from source and update `plugins/providers/virtualbox/driver/meta.rb#read_version` something like `return '5.0.10'`.
