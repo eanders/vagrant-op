@@ -41,6 +41,9 @@ source /home/vagrant/.rvm/scripts/rvm
 
 cd ~/hmis-warehouse
 rvm install "ruby-2.7.4"
+gem install bundler:2.2.30
+gem install overcommit
+overcommit --sign
 
 mkdir ~/.aws
 touch ~/.aws/config
