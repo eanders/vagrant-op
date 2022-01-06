@@ -6,3 +6,5 @@ services:
   redis:
     ports:
       - 6378 # hide redis from the warehouse
+  mailhog:
+    image: cd2team/mailhog
