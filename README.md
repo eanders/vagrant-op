@@ -26,37 +26,18 @@ Future starts can be run as
 vagrant up
 ```
 
-If initialization fails with errors related to pulling images, you may need to fix the DNS configuration. See the next section.
-
 
 Once Vagrant is up, `ssh` in and run the setup scripts:
 ```sh
 vagrant ssh
 cd hmis-warehouse
 docker-compose run --rm shell bin/setup
-docker-compose run --rm shell bin/db_prep
 
 cd ../boston-cas
 docker-compose run --rm shell bin/setup
 ```
 
 ## Extra Steps for Parallels
-
-You may need to run this from inside the Vagrant box to fix DNS issues:
-
-```sh
-# Add google nameservers
-sudo su
-echo 'prepend domain-name-servers 8.8.8.8, 8.8.4.4;'  >> /etc/dhcp/dhclient.conf
-# Run dhclient for the changes to take effect
-dhclient
-# Make sure you can ping google from the vagrant box
-ping google.com
-
-# When your docker containers are up, make sure you can ping google from inside them
-cd boston-cas
-docker-compose run --rm shell ping google.com
-```
 
 Run this from inside the Vagrant box to ensure inotify can watch all files:
 

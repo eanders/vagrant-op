@@ -6,6 +6,8 @@ chown -R vagrant:vagrant /home/vagrant/.ssh
 chmod -R 700 /home/vagrant/.ssh
 
 echo '127.0.0.1 host.docker.internal' >> /etc/hosts
+echo 'prepend domain-name-servers 8.8.8.8, 8.8.4.4;' >> /etc/dhcp/dhclient.conf
+dhclient
 
 apt-get update
 apt-get -y install docker.io gnupg2 postgresql-client-common libpq-dev libmagic-dev unzip ruby-curb freetds-dev libicu-dev libcurl4-gnutls-dev
