@@ -1,4 +1,12 @@
 /boston-cas
 /hmis-warehouse
+/hmis-frontend
+/openpath-website
+/op-experiments
+/sftp/sftp
+/homedir
+/localstack
+/deploy
+/docker
 .vagrant
 .vscode

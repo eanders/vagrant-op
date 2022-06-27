@@ -10,7 +10,7 @@ echo 'prepend domain-name-servers 8.8.8.8, 8.8.4.4;' >> /etc/dhcp/dhclient.conf
 dhclient
 
 apt-get update
-apt-get -y install docker.io gnupg2 postgresql-client-common libpq-dev libmagic-dev unzip ruby-curb freetds-dev libicu-dev libcurl4-gnutls-dev
+apt-get -y install docker.io gnupg2 postgresql-client-common libpq-dev libmagic-dev unzip ruby-curb freetds-dev libicu-dev libcurl4-gnutls-dev pip libnss3-tools
 
 curl -L "https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-linux-aarch64" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
