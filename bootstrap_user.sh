@@ -37,6 +37,10 @@ ln -s /vagrant/hmis-warehouse ~/hmis-warehouse
 ln -s /vagrant/hmis-frontend ~/hmis-frontend
 ln -s /vagrant/deploy ~/deploy
 ln -s /vagrant/sftp ~/sftp
+mkdir -p ~/minio/data
+mkdir -p ~/.minio/certs
+cp ~/hmis-warehouse/docker/nginx-proxy/certs/dev.test.crt ~/.minio/certs/public.crt
+cp ~/hmis-warehouse/docker/nginx-proxy/certs/dev.test.key ~/.minio/certs/private.key
 
 source ~/.bashrc
 

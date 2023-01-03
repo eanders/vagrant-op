@@ -19,6 +19,9 @@ Vagrant.configure('2') do |config|
   config.vm.network 'forwarded_port', guest: 6379, host: 6380, auto_correct: false
   # config.vm.network 'forwarded_port', guest: 80, host: 80, auto_correct: false
   config.vm.network 'forwarded_port', guest: 443, host: 443, auto_correct: false
+  config.vm.network 'forwarded_port', guest: 9000, host: 9000, auto_correct: false
+  # enable for minio console
+  # config.vm.network 'forwarded_port', guest: 9001, host: 9001, auto_correct: false
   # superset
   # config.vm.network 'forwarded_port', guest: 8088, host: 8088, auto_correct: false
   config.ssh.forward_agent = true
