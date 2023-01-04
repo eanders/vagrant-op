@@ -41,6 +41,8 @@ mkdir -p ~/minio/data
 mkdir -p ~/.minio/certs
 cp ~/hmis-warehouse/docker/nginx-proxy/certs/dev.test.crt ~/.minio/certs/public.crt
 cp ~/hmis-warehouse/docker/nginx-proxy/certs/dev.test.key ~/.minio/certs/private.key
+sudo cp /vagrant/hmis-warehouse/docker/nginx-proxy/certs/dev.test.crt /usr/local/share/ca-certificates
+sudo update-ca-certificates
 
 source ~/.bashrc
 
