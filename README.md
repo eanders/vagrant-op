@@ -2,7 +2,7 @@
 This can be run with either a VirtualBox or Parallels provider.
 
 ```bash
-gem uninstall vagant
+gem uninstall vagrant
 brew install vagrant
 
 vagrant plugin install vagrant-parallels
