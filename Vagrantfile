@@ -7,7 +7,7 @@ Vagrant.configure('2') do |config|
   # vagrant plugin install vagrant-disksize
   # or the next line won't do anything
   config.vm.disk :disk, name: 'op-main', size: '60GB', primary: true
-  config.vm.box = 'bento/ubuntu-20.04-arm64'
+  config.vm.box = 'bento/ubuntu-22.04-arm64'
   config.vm.box_check_update = false
 
   config.vm.network 'forwarded_port', guest: 22, host: 2323

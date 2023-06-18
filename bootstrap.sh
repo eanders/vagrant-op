@@ -22,7 +22,7 @@ cd docker/nginx-proxy
 docker network create nginx-proxy
 
 gem install bundler:1.17.3
-gem install bundler:2.2.30
+gem install bundler:2.4.13
 bundle update --bundler
 
 curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"

@@ -53,8 +53,8 @@ curl -sSL https://get.rvm.io | bash -s stable
 source /home/vagrant/.rvm/scripts/rvm
 
 cd ~/hmis-warehouse
-rvm install "ruby-2.7.6"
-gem install bundler:2.3.8
+rvm install "ruby-3.1.4"
+gem install bundler:2.4.13
 gem install overcommit
 gem install aws-sdk-secretsmanager
 gem install aws-sdk-ecr
@@ -64,9 +64,6 @@ bundle config build.nokogiri --use-system-libraries
 
 mkdir ~/.aws
 touch ~/.aws/config
-
-ln -s /vagrant/localstack ~/localstack
-python3 -m pip install localstack
 
 # TODO:
 # git credentials (and verification)

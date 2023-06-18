@@ -74,6 +74,30 @@ With the Parallels Provider, it appears disks don't resize quite as seemlessly, 
 sudo lvextend --size 58GB /dev/mapper/ubuntu--vg-ubuntu--lv
 sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
 ```
+Alternatively, you can make a "docker" disk.  Create a large disk in Parallels.  Then within the container
+```
+sudo su -
+systemctl stop docker
+mv /var/lib/docker /var/lib/docker-tmp
+mkdir /var/lib/docker
+chmod chmod 710 /var/lib/docker
+fdisk /dev/sdb # Follow the steps to make a new primary partition
+mkfs.ext4 /dev/sdb1
+lsblk -f # this will tell you the UUID of the new partition
+```
+Add the following to /etc/fstab
+```
+/dev/disk/by-uuid/<<UUID>> /var/lib/docker ext4 defaults 0 1
+#VAGRANT-BEGIN
+```
+Then:
+```
+mount /var/lib/docker
+rsync -a /var/lib/docker-tmp/* /var/lib/docker/
+systemctl start docker
+exit
+df -h # should now show the new mount with some data in it
+```
 
 # Database overrides
 
@@ -105,4 +129,15 @@ services:
   redis:
     ports:
       - 6378 # hide redis from the warehouse
+```
+
+# Database backups
+
+The database is the main set of data that is currently only stored within a docker volume.  To prevent losing your data you should back it up.  This is one way:
+```
+docker exec -t hmis-warehouse-db pg_dumpall -c -U postgres > var/dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+```
+Then to restore:
+```
+cat var/your_dump.sql | docker exec -i hmis-warehouse-db psql -U postgres
 ```
