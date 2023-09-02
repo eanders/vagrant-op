@@ -2,14 +2,16 @@
 
 echo "export AWS_VAULT_BACKEND=file" >> /home/vagrant/.bashrc
 echo "export GPG_TTY=$(tty)" >> /home/vagrant/.bashrc
-echo "export AWS_ACCESS_KEY_ID=unknown" >> /home/vagrant/.bashrc
-echo "export AWS_SECRET_ACCESS_KEY=unknown" >> /home/vagrant/.bashrc
-echo "export AWS_SESSION_TOKEN=unknown" >> /home/vagrant/.bashrc
-echo "export AWS_SECURITY_TOKEN=unknown" >> /home/vagrant/.bashrc
+# echo "export AWS_ACCESS_KEY_ID=unknown" >> /home/vagrant/.bashrc
+# echo "export AWS_SECRET_ACCESS_KEY=unknown" >> /home/vagrant/.bashrc
+# echo "export AWS_SESSION_TOKEN=unknown" >> /home/vagrant/.bashrc
+# echo "export AWS_SECURITY_TOKEN=unknown" >> /home/vagrant/.bashrc
 echo "alias dcr='docker-compose run --rm'" >> /home/vagrant/.bashrc
 
 # add keys so we don't need to enter the password always
 echo "ssh-add" >> /home/vagrant/.bashrc
+# Make direnv work
+echo "eval "$(direnv hook bash)" >> /home/vagrant/.bashrc
 
 if [ ! -d /vagrant/boston-cas ]; then
   git clone git@github.com:greenriver/boston-cas.git /vagrant/boston-cas
@@ -37,10 +39,9 @@ ln -s /vagrant/hmis-warehouse ~/hmis-warehouse
 ln -s /vagrant/hmis-frontend ~/hmis-frontend
 ln -s /vagrant/deploy ~/deploy
 ln -s /vagrant/sftp ~/sftp
-mkdir -p ~/minio/data
-mkdir -p ~/.minio/certs
-cp ~/hmis-warehouse/docker/nginx-proxy/certs/dev.test.crt ~/.minio/certs/public.crt
-cp ~/hmis-warehouse/docker/nginx-proxy/certs/dev.test.key ~/.minio/certs/private.key
+
+cp ~/hmis-warehouse/docker/nginx-proxy/certs/dev.test.crt ~/hmis-warehouse/dev/minio/certs/public.crt
+cp ~/hmis-warehouse/docker/nginx-proxy/certs/dev.test.key ~/hmis-warehouse/dev/minio/certs/private.key
 sudo cp /vagrant/hmis-warehouse/docker/nginx-proxy/certs/dev.test.crt /usr/local/share/ca-certificates
 sudo update-ca-certificates
 

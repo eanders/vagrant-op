@@ -26,7 +26,7 @@ Vagrant.configure('2') do |config|
   # config.vm.network 'forwarded_port', guest: 8088, host: 8088, auto_correct: false
   config.ssh.forward_agent = true
   config.vm.provider :parallels do |prl|
-    prl.update_guest_tools = true
+    prl.update_guest_tools = false
     prl.memory = 8192
     prl.cpus = 6
   end
